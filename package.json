@@ -16,6 +16,7 @@
     "build:hooks": "node dist/scripts/build-hooks.js",
     "test": "vitest run",
     "test:watch": "vitest",
+    "version": "tsc && node dist/scripts/update-version.js && git add README.md README.ko-KR.md README.zh-CN.md README.ja-JP.md README.tr-TR.md",
     "prepublishOnly": "npm run build"
   },
   "author": "Bruce Jung <sunghunet@gmail.com>",

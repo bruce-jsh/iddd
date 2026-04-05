@@ -1,5 +1,6 @@
 import { join, resolve } from 'node:path';
 import { readFile, writeFile } from 'node:fs/promises';
+import { readFileSync } from 'node:fs';
 import { copyDir, createSymlink, fileExists } from './utils/fs.js';
 import { banner, box } from './utils/ascii.js';
 import { execSync } from 'node:child_process';
@@ -209,8 +210,18 @@ async function installGitHooks(targetDir: string): Promise<boolean> {
 }
 
 export function printBanner(): void {
-  const pkg = { version: '0.9.2' };
-  console.log(banner(pkg.version));
+  const version = getVersion();
+  console.log(banner(version));
+}
+
+function getVersion(): string {
+  try {
+    const pkgPath = new URL('../../package.json', import.meta.url);
+    const pkg = JSON.parse(readFileSync(pkgPath, 'utf-8'));
+    return pkg.version ?? '0.0.0';
+  } catch {
+    return '0.0.0';
+  }
 }
 
 export function printSuccess(result: InitResult): void {
