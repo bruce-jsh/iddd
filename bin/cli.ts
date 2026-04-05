@@ -7,8 +7,8 @@ const args = process.argv.slice(2);
 const flags = args.filter((a) => a.startsWith('--'));
 const positional = args.filter((a) => !a.startsWith('--'));
 
-// npx id3@latest [target-dir]  — no subcommand needed
-// npx id3@latest init [target-dir]  — also works
+// npx id3-cli@latest [target-dir]  — no subcommand needed
+// npx id3-cli@latest init [target-dir]  — also works
 const hasInit = positional[0] === 'init';
 const targetDir = hasInit ? (positional[1] ?? '.') : (positional[0] ?? '.');
 const noSymlink = flags.includes('--no-symlink');

@@ -125,10 +125,10 @@ IDDD 将经典的三阶段数据建模过程直接映射到软件开发阶段：
 ## 安装
 
 ```bash
-npx id3@latest
+npx id3-cli@latest
 ```
 
-无需子命令——`id3` 直接运行初始化流程。它将：
+无需子命令——`id3-cli` 直接运行初始化流程。它将：
 
 1. 将所有 IDDD 模板（规格、文档、引导、技能、Hook）复制到你的项目中。
 2. 创建平台特定的符号链接（`.claude/skills/` 或 `.agents/skills/`）指向规范的 `skills/` 原始文件。
@@ -145,7 +145,7 @@ npx id3@latest
 
 ### 覆盖检测
 
-如果目标目录中已存在 `CLAUDE.md`，`id3` 将提示：
+如果目标目录中已存在 `CLAUDE.md`，`id3-cli` 将提示：
 
 ```
 "IDDD appears to be already installed. Overwrite? (y/N)"
@@ -177,7 +177,7 @@ npx id3@latest
 
 ## 安装后的目录结构
 
-运行 `npx id3@latest` 后，你的项目将获得以下结构：
+运行 `npx id3-cli@latest` 后，你的项目将获得以下结构：
 
 ```
 your-project/
@@ -658,7 +658,7 @@ IDDD 设计为可适配你的项目约定。以下是自定义内容及对应文
 
 ```
 $ mkdir my-saas && cd my-saas && git init
-$ npx id3@latest
+$ npx id3-cli@latest
 
   IDDD installed. Next: fill in steering/product.md
 
@@ -702,7 +702,7 @@ $ claude
 
 ```
 $ cd existing-django-project
-$ npx id3@latest
+$ npx id3-cli@latest
 
   Detected: Django models (models.py), PostgreSQL migrations
   IDDD installed.

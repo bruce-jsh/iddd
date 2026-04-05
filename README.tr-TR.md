@@ -125,10 +125,10 @@ Bilgi modelinin her öğesi otomatik olarak geliştirme çıktılarını ima ede
 ## Kurulum
 
 ```bash
-npx id3@latest
+npx id3-cli@latest
 ```
 
-Alt komuta gerek yoktur -- `id3` başlatma sürecini doğrudan çalıştırır. Şunları yapacaktır:
+Alt komuta gerek yoktur -- `id3-cli` başlatma sürecini doğrudan çalıştırır. Şunları yapacaktır:
 
 1. Tüm IDDD şablonlarını (spesifikasyonlar, belgeler, yönlendirme, beceriler, Hook'lar) projenize kopyalar.
 2. Platforma özgü sembolik bağlantılar (`.claude/skills/` veya `.agents/skills/`) oluşturarak orijinal `skills/` dizinine işaret eder.
@@ -145,7 +145,7 @@ Alt komuta gerek yoktur -- `id3` başlatma sürecini doğrudan çalıştırır. 
 
 ### Üzerine Yazma Algılama
 
-Hedef dizinde `CLAUDE.md` zaten mevcutsa, `id3` şu soruyu sorar:
+Hedef dizinde `CLAUDE.md` zaten mevcutsa, `id3-cli` şu soruyu sorar:
 
 ```
 "IDDD appears to be already installed. Overwrite? (y/N)"
@@ -177,7 +177,7 @@ Hedef dizinde `CLAUDE.md` zaten mevcutsa, `id3` şu soruyu sorar:
 
 ## Kurulumdan Sonra Dizin Yapısı
 
-`npx id3@latest` komutunu çalıştırdıktan sonra projeniz aşağıdaki yapıya sahip olur:
+`npx id3-cli@latest` komutunu çalıştırdıktan sonra projeniz aşağıdaki yapıya sahip olur:
 
 ```
 your-project/
@@ -658,7 +658,7 @@ IDDD, projenizin kurallarına uyarlanacak şekilde tasarlanmıştır. Neyi ve ne
 
 ```
 $ mkdir my-saas && cd my-saas && git init
-$ npx id3@latest
+$ npx id3-cli@latest
 
   IDDD installed. Next: fill in steering/product.md
 
@@ -702,7 +702,7 @@ $ claude
 
 ```
 $ cd existing-django-project
-$ npx id3@latest
+$ npx id3-cli@latest
 
   Detected: Django models (models.py), PostgreSQL migrations
   IDDD installed.

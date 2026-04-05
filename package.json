@@ -1,10 +1,10 @@
 {
-  "name": "id3",
+  "name": "id3-cli",
   "version": "0.9.1",
   "description": "Information Design-Driven Development — installable skill package for AI coding agents",
   "type": "module",
   "bin": {
-    "id3": "./dist/bin/cli.js"
+    "id3-cli": "dist/bin/cli.js"
   },
   "files": [
     "dist/",

@@ -125,10 +125,10 @@ You need Node.js for the `npx` installer. The AI platform subscription is requir
 ## Installation
 
 ```bash
-npx id3@latest
+npx id3-cli@latest
 ```
 
-No sub-command is needed -- `id3` runs the init process directly. It will:
+No sub-command is needed -- `id3-cli` runs the init process directly. It will:
 
 1. Copy all IDDD templates (specs, docs, steering, skills, hooks) into your project.
 2. Create platform-specific symlinks (`.claude/skills/` or `.agents/skills/`) pointing to the canonical `skills/` originals.
@@ -145,7 +145,7 @@ No sub-command is needed -- `id3` runs the init process directly. It will:
 
 ### Overwrite Detection
 
-If `CLAUDE.md` already exists in the target directory, `id3` will prompt:
+If `CLAUDE.md` already exists in the target directory, `id3-cli` will prompt:
 
 ```
 "IDDD appears to be already installed. Overwrite? (y/N)"
@@ -177,7 +177,7 @@ If `CLAUDE.md` already exists in the target directory, `id3` will prompt:
 
 ## Directory Structure After Installation
 
-After running `npx id3@latest`, your project gains the following structure:
+After running `npx id3-cli@latest`, your project gains the following structure:
 
 ```
 your-project/
@@ -658,7 +658,7 @@ IDDD is designed to be adapted to your project's conventions. Here is what to cu
 
 ```
 $ mkdir my-saas && cd my-saas && git init
-$ npx id3@latest
+$ npx id3-cli@latest
 
   IDDD installed. Next: fill in steering/product.md
 
@@ -702,7 +702,7 @@ $ claude
 
 ```
 $ cd existing-django-project
-$ npx id3@latest
+$ npx id3-cli@latest
 
   Detected: Django models (models.py), PostgreSQL migrations
   IDDD installed.

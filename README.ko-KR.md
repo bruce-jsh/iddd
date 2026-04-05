@@ -125,10 +125,10 @@ IDDD는 전통적인 3단계 데이터 모델링 프로세스를 소프트웨어
 ## 설치
 
 ```bash
-npx id3@latest
+npx id3-cli@latest
 ```
 
-별도의 하위 명령어가 필요 없습니다 -- `id3`가 초기화 프로세스를 직접 실행합니다. 다음을 수행합니다:
+별도의 하위 명령어가 필요 없습니다 -- `id3-cli`가 초기화 프로세스를 직접 실행합니다. 다음을 수행합니다:
 
 1. 모든 IDDD 템플릿(명세, 문서, 스티어링, 스킬, Hook)을 프로젝트에 복사합니다.
 2. 플랫폼별 심볼릭 링크(`.claude/skills/` 또는 `.agents/skills/`)를 정규 `skills/` 원본을 가리키도록 생성합니다.
@@ -145,7 +145,7 @@ npx id3@latest
 
 ### 덮어쓰기 감지
 
-대상 디렉터리에 `CLAUDE.md`가 이미 존재하면, `id3`가 다음과 같이 묻습니다:
+대상 디렉터리에 `CLAUDE.md`가 이미 존재하면, `id3-cli`가 다음과 같이 묻습니다:
 
 ```
 "IDDD appears to be already installed. Overwrite? (y/N)"
@@ -177,7 +177,7 @@ npx id3@latest
 
 ## 설치 후 디렉터리 구조
 
-`npx id3@latest` 실행 후, 프로젝트에 다음 구조가 추가됩니다:
+`npx id3-cli@latest` 실행 후, 프로젝트에 다음 구조가 추가됩니다:
 
 ```
 your-project/
@@ -658,7 +658,7 @@ IDDD는 프로젝트의 규약에 맞게 적응할 수 있도록 설계되었습
 
 ```
 $ mkdir my-saas && cd my-saas && git init
-$ npx id3@latest
+$ npx id3-cli@latest
 
   IDDD installed. Next: fill in steering/product.md
 
@@ -702,7 +702,7 @@ $ claude
 
 ```
 $ cd existing-django-project
-$ npx id3@latest
+$ npx id3-cli@latest
 
   Detected: Django models (models.py), PostgreSQL migrations
   IDDD installed.
