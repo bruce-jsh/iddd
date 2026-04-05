@@ -209,7 +209,7 @@ async function installGitHooks(targetDir: string): Promise<boolean> {
 }
 
 export function printBanner(): void {
-  const pkg = { version: '0.9.1' };
+  const pkg = { version: '0.9.2' };
   console.log(banner(pkg.version));
 }
 
