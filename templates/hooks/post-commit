@@ -1,0 +1,121 @@
+#!/usr/bin/env node
+
+// src/hooks/post-commit-entry.ts
+import { resolve } from "node:path";
+
+// src/hooks/auto-audit.ts
+import { readFile as readFile2, writeFile, mkdir } from "node:fs/promises";
+import { join as join2 } from "node:path";
+
+// src/hooks/shared.ts
+import { readFile } from "node:fs/promises";
+import { join } from "node:path";
+import { execSync } from "node:child_process";
+
+// src/utils/ascii.ts
+function box(content, options = {}) {
+  const { title, width = 47, padding = 1 } = options;
+  const lines = content.split("\n");
+  const innerWidth = width - 2;
+  const padStr = " ".repeat(padding);
+  const result = [];
+  if (title) {
+    const titleStr = ` ${title} `;
+    const remaining = innerWidth - titleStr.length - 1;
+    result.push(`  \u250C\u2500${titleStr}${"\u2500".repeat(Math.max(0, remaining))}\u2510`);
+  } else {
+    result.push(`  \u250C${"\u2500".repeat(innerWidth)}\u2510`);
+  }
+  result.push(`  \u2502${" ".repeat(innerWidth)}\u2502`);
+  for (const line of lines) {
+    const padded = `${padStr}${line}`;
+    const spaces = innerWidth - padded.length;
+    result.push(`  \u2502${padded}${" ".repeat(Math.max(0, spaces))}\u2502`);
+  }
+  result.push(`  \u2502${" ".repeat(innerWidth)}\u2502`);
+  result.push(`  \u2514${"\u2500".repeat(innerWidth)}\u2518`);
+  return result.join("\n");
+}
+
+// src/hooks/shared.ts
+async function loadHookConfig(projectRoot2) {
+  try {
+    const configPath = join(
+      projectRoot2,
+      ".claude",
+      "hooks",
+      "hook-config.json"
+    );
+    const content = await readFile(configPath, "utf-8");
+    return JSON.parse(content);
+  } catch {
+    return null;
+  }
+}
+function isSkipHooks() {
+  return process.env["IDDD_SKIP_HOOKS"] === "1";
+}
+async function logSkip(projectRoot2) {
+  const { appendFile, mkdir: mkdir2 } = await import("node:fs/promises");
+  const logDir = join(projectRoot2, ".iddd");
+  await mkdir2(logDir, { recursive: true });
+  const logPath = join(logDir, "skip-history.log");
+  const timestamp = (/* @__PURE__ */ new Date()).toISOString();
+  let commitHash = "unknown";
+  try {
+    commitHash = execSync("git rev-parse HEAD", { encoding: "utf-8" }).trim();
+  } catch {
+  }
+  await appendFile(logPath, `${timestamp}	${commitHash}	Hook skipped
+`);
+}
+function printWarn(title, message) {
+  console.error(box(message, { title }));
+}
+
+// src/hooks/auto-audit.ts
+async function incrementCounter(projectRoot2) {
+  const counterPath = join2(projectRoot2, ".iddd", "commit-count");
+  let count = 0;
+  try {
+    const content = await readFile2(counterPath, "utf-8");
+    count = parseInt(content.trim(), 10) || 0;
+  } catch {
+  }
+  count++;
+  await mkdir(join2(projectRoot2, ".iddd"), { recursive: true });
+  await writeFile(counterPath, count.toString());
+  return count;
+}
+async function resetCounter(projectRoot2) {
+  const counterPath = join2(projectRoot2, ".iddd", "commit-count");
+  await writeFile(counterPath, "0");
+}
+async function runAutoAudit(projectRoot2) {
+  if (isSkipHooks()) {
+    await logSkip(projectRoot2);
+    return;
+  }
+  const config = await loadHookConfig(projectRoot2);
+  if (!config?.hooks["post-commit"]["auto-audit"]?.enabled) {
+    return;
+  }
+  const threshold = config.hooks["post-commit"]["auto-audit"].interval_commits;
+  const count = await incrementCounter(projectRoot2);
+  if (count >= threshold) {
+    printWarn(
+      "\u2139\uFE0F Auto-Audit Triggered",
+      `${count} commits since last audit.
+Run /id3-info-audit for a full check.
+
+Report saved to .iddd/last-audit-report.md`
+    );
+    await resetCounter(projectRoot2);
+  }
+}
+
+// src/hooks/post-commit-entry.ts
+var projectRoot = resolve(".");
+runAutoAudit(projectRoot).catch((err) => {
+  console.error("IDDD post-commit hook error:", err);
+});

@@ -1,0 +1,40 @@
+{
+  "hooks": {
+    "PreToolUse": [
+      {
+        "matcher": "Bash",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "node hooks/iddd-schema-drift.js",
+            "statusMessage": "Checking IDDD schema drift"
+          }
+        ]
+      }
+    ],
+    "PostToolUse": [
+      {
+        "matcher": "Bash",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "node hooks/iddd-rule-check.js",
+            "statusMessage": "Checking IDDD business rules"
+          }
+        ]
+      }
+    ],
+    "SessionStart": [
+      {
+        "matcher": "startup|resume",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "node hooks/iddd-auto-audit.js",
+            "statusMessage": "IDDD entropy check"
+          }
+        ]
+      }
+    ]
+  }
+}

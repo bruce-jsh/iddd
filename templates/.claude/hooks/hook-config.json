@@ -1,0 +1,34 @@
+{
+  "enabled": true,
+  "hooks": {
+    "pre-commit": {
+      "schema-drift": {
+        "enabled": true,
+        "severity": "block",
+        "monitored_patterns": [
+          "prisma/schema.prisma",
+          "drizzle/**/*.ts",
+          "**/migrations/*.sql",
+          "**/models.py",
+          "**/entities/*.ts",
+          "**/entities/*.java"
+        ]
+      },
+      "rule-check": {
+        "enabled": true,
+        "severity": "warn",
+        "validation_patterns": [
+          "*.schema.ts",
+          "*.validator.*",
+          "**/validators/**"
+        ]
+      }
+    },
+    "post-commit": {
+      "auto-audit": {
+        "enabled": true,
+        "interval_commits": 10
+      }
+    }
+  }
+}

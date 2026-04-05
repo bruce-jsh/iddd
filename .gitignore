@@ -1,0 +1,12 @@
+node_modules/
+dist/
+*.tgz
+.DS_Store
+package-lock.json
+# Development artifacts
+docs/superpowers/
+prd/
+tests/
+scripts/
+vitest.config.ts
+tsconfig.json

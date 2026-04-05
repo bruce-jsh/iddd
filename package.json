@@ -1,0 +1,37 @@
+{
+  "name": "id3",
+  "version": "0.9.1",
+  "description": "Information Design-Driven Development — installable skill package for AI coding agents",
+  "type": "module",
+  "bin": {
+    "id3": "./dist/bin/cli.js"
+  },
+  "files": [
+    "dist/",
+    "templates/"
+  ],
+  "scripts": {
+    "build": "tsc && node dist/scripts/build-hooks.js",
+    "build:cli": "tsc",
+    "build:hooks": "node dist/scripts/build-hooks.js",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "prepublishOnly": "npm run build"
+  },
+  "author": "Bruce Jung <sunghunet@gmail.com>",
+  "license": "MIT",
+  "keywords": [
+    "iddd",
+    "claude-code",
+    "codex",
+    "information-design",
+    "data-modeling",
+    "agent-skills"
+  ],
+  "devDependencies": {
+    "@types/node": "^25.5.2",
+    "esbuild": "^0.25.0",
+    "typescript": "^5.8.0",
+    "vitest": "^3.1.0"
+  }
+}
