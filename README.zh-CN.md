@@ -124,6 +124,16 @@ IDDD 将经典的三阶段数据建模过程直接映射到软件开发阶段：
 
 ## 安装
 
+### 推荐：全局安装
+
+```bash
+npm i -g id3-cli
+```
+
+全局安装会注册两个全局技能（`/id3-start` 和 `/id3-clear`），可在所有项目中使用。之后在任意项目中运行 `/id3-start` 即可——它会自动检测 IDDD 是否已设置并处理一切。
+
+### 备选：项目级设置
+
 ```bash
 npx id3-cli@latest
 ```
@@ -159,10 +169,14 @@ npx id3-cli@latest
 │  Next steps:                                              │
 │                                                           │
 │    1. Fill in steering/product.md                         │
-│    2. Run /id3-identify-entities to start                  │
+│    2. Run /id3-start to begin (or /id3-identify-entities) │
 │    3. Customize steering/data-conventions.md              │
 │                                                           │
-│  Skills:                                                  │
+│  Global Skills (via npm i -g):                            │
+│    ├── id3-start               (Smart Router)             │
+│    └── id3-clear               (Project Reset)            │
+│                                                           │
+│  Project Skills (per-project):                            │
 │    ├── id3-identify-entities   (Phase 0/1)                │
 │    ├── id3-design-information  (Phase 2)                  │
 │    ├── id3-design-ui           (Phase 2.5)                │
@@ -177,7 +191,20 @@ npx id3-cli@latest
 
 ## 安装后的目录结构
 
-运行 `npx id3-cli@latest` 后，你的项目将获得以下结构：
+运行 `npm i -g id3-cli` 后，以下全局技能将安装到系统中：
+
+```
+~/.claude/skills-global/              全局技能（由 npm i -g 安装）
+  ├── id3-start/                      智能路由器入口点
+  │   ├── SKILL.md
+  │   └── references/
+  │       ├── phase-guide.md            Phase 路由分类体系
+  │       └── dashboard-template.md     进度仪表板格式
+  └── id3-clear/                      项目重置
+      └── SKILL.md
+```
+
+运行 `npx id3-cli@latest` 后（或通过 `/id3-start` 自动触发），你的项目将获得以下结构：
 
 ```
 your-project/
@@ -334,21 +361,52 @@ Skill 内容维护在单一规范位置（`skills/`）。平台特定路径（`.
 
 ### Phase 逐步说明
 
+> **提示：** 无需记忆各个 Phase 的命令，直接使用 `/id3-start [你的请求]` 即可。它会显示进度仪表板，分析你的意图，并自动路由到正确的 Phase 技能。这是推荐的入口点。
+
 **Phase 0/1 -- Entity 识别：**
-打开你的 AI 编码代理，运行 `/id3-identify-entities`。代理会自动检测你是否有现有代码库（brownfield）或从零开始（greenfield），然后运行相应的识别流程。
+打开你的 AI 编码代理，运行 `/id3-start identify the entities in my domain`（或直接运行 `/id3-identify-entities`）。代理会自动检测你是否有现有代码库（brownfield）或从零开始（greenfield），然后运行相应的识别流程。
 
 **Phase 2 -- 信息设计：**
-运行 `/id3-design-information`。代理将概念模型精化为逻辑模型，派生业务规则，并设置版本头和 Hook 配置。
+运行 `/id3-start refine the information model`（或直接运行 `/id3-design-information`）。代理将概念模型精化为逻辑模型，派生业务规则，并设置版本头和 Hook 配置。
 
 **Phase 2.5 -- UI 设计：**
-运行 `/id3-design-ui`。代理从 Entity 目录中派生界面结构，使用设计令牌建立视觉设计契约，运行包含交互式 mockup 预览的 7-Pillar 质量门禁，然后生成 Agent Teams 进行并行界面实现并执行事后审计。
+运行 `/id3-start design the UI`（或直接运行 `/id3-design-ui`）。代理从 Entity 目录中派生界面结构，使用设计令牌建立视觉设计契约，运行包含交互式 mockup 预览的 7-Pillar 质量门禁，然后生成 Agent Teams 进行并行界面实现并执行事后审计。
 
 **Phase 3-5 -- 通过 Agent Teams 实现：**
-运行 `/id3-spawn-team`。代理读取最终确定的信息模型，生成一个由专业代理组成的团队（spec-generator、implementer、qa-reviewer），以并行方式实现系统。
+运行 `/id3-start build the system`（或直接运行 `/id3-spawn-team`）。代理读取最终确定的信息模型，生成一个由专业代理组成的团队（spec-generator、implementer、qa-reviewer），以并行方式实现系统。
 
 ---
 
 ## 技能
+
+### id3-start（全局——智能路由器）
+
+IDDD 的智能入口点。用户无需记忆各个 Phase 技能名称——`/id3-start` 会分析请求并自动路由到正确的技能。
+
+**触发关键词：** `start IDDD`、`begin project`、`what should I do next`、`identify entities`、`design information`、`design ui`、`build`、`audit`、`preview`
+
+**能力：**
+
+1. **自动设置：** 检测当前项目是否已安装 IDDD（`specs/entity-catalog.md` + `CLAUDE.md`）。若未安装，自动运行 `npx id3-cli .` 设置 IDDD 后再继续。
+2. **进度仪表板：** 使用可视化符号（完成用勾选，进行中用菱形，未开始用圆圈）显示各 Phase 的完成状态以及进度条。
+3. **意图路由：** 对照 Phase 信号关键词分析用户的自然语言请求，并路由到正确的 Phase 技能（`/id3-identify-entities`、`/id3-design-information`、`/id3-design-ui`、`/id3-spawn-team`、`/id3-info-audit` 或 `/id3-preview`）。
+4. **模糊请求处理：** 当请求可能匹配多个 Phase 时（例如"给列表添加筛选"可能仅涉及 UI，也可能需要新的数据实体），在路由前先提出澄清问题。
+5. **UI 快速通道：** 若请求仅包含明确的 UI 关键词，且数据模型已存在（version >= 1.0），则直接路由到 `/id3-design-ui`，无需询问实体相关问题。
+6. **前提条件检查：** 若目标 Phase 的前提条件未满足，则发出警告并建议正确的起始 Phase。
+
+**用法：**
+
+```
+/id3-start                          显示仪表板 + 建议下一步操作
+/id3-start identify the entities    路由到 /id3-identify-entities
+/id3-start design the UI            路由到 /id3-design-ui
+/id3-start build the system         路由到 /id3-spawn-team
+/id3-start run an audit             路由到 /id3-info-audit
+```
+
+**安装：** 通过 `npm i -g id3-cli` 全局安装至 `~/.claude/skills-global/id3-start/`。
+
+---
 
 ### id3-identify-entities (Phase 0/1)
 
@@ -498,6 +556,30 @@ L4 调查非常深入：它扫描基于文件的路由（Next.js `app/`、`pages
 - **审计仪表板** -- 按 Entity 的状态卡片，含业务规则覆盖率
 
 所有 HTML 文件持久化存储在 `.iddd/preview/` 中，即使没有服务器也可以直接在浏览器中打开。
+
+---
+
+### id3-clear（全局——项目重置）
+
+安全地从当前项目中移除所有 IDDD 生成的文件，将项目恢复到 IDDD 安装前的状态。
+
+**触发关键词：** `clear iddd`、`reset iddd`、`remove iddd`、`clean project`
+
+**流程：**
+
+1. **验证安装：** 检查项目中是否存在 IDDD 文件。如果没有找到，报告"No IDDD files found"并停止。
+2. **扫描目标：** 识别实际存在的 IDDD 目录（`specs/`、`docs/`、`steering/`、`hooks/`、`skills/`、`.claude/skills/`、`.claude/hooks/`、`.codex/skills/`、`.agents/skills/`、`.iddd/`）和文件（`CLAUDE.md`、`AGENTS.md`）。
+3. **显示警告：** 展示所有将被删除的文件和目录的详细列表。对用户编写的文件（`steering/product.md`、`steering/data-conventions.md`）添加特别注释。
+4. **要求确认：** 以 `[y/N]`（默认 N）提示。仅在明确输入"y"或"yes"时继续。
+5. **执行删除：** 仅移除已识别的目标。显示包含数量统计的完成摘要。
+
+**安全规则：**
+- 永不删除已知 IDDD 文件列表之外的文件
+- 永不使用 `rm -rf *` 等通配符模式
+- 永不跳过确认步骤
+- 如需选择性删除，请使用手动文件操作
+
+**安装：** 通过 `npm i -g id3-cli` 全局安装至 `~/.claude/skills-global/id3-clear/`。
 
 ---
 
@@ -657,13 +739,28 @@ IDDD 设计为可适配你的项目约定。以下是自定义内容及对应文
 ### 示例 1：启动新项目（Greenfield）
 
 ```
+$ npm i -g id3-cli
 $ mkdir my-saas && cd my-saas && git init
-$ npx id3-cli@latest
-
-  IDDD installed. Next: fill in steering/product.md
-
 $ claude
-> /id3-identify-entities
+> /id3-start
+
+  ╔════════════════════════════════════════════════════════════════╗
+  ║  Welcome to IDDD -- Information Design-Driven Development.     ║
+  ║  Your information model is your harness.                       ║
+  ╚════════════════════════════════════════════════════════════════╝
+
+  IDDD is not set up in this project. Setting up now...
+  IDDD initialized. Here is your project dashboard:
+
+  (dashboard shows all phases as ○ -- not started)
+
+  > Suggested next action: Entity Identification (Phase 0/1).
+  > Use `/id3-start [your request]` to begin.
+
+> /id3-start identify the entities in my SaaS domain
+
+  Routing to /id3-identify-entities -- Identify domain entities through structured interview.
+  This phase produces: specs/entity-catalog.md, specs/data-model.md, docs/business-rules.md
 
   Agent: "What core 'things' does your system manage?"
   You: "Users, Organizations, Subscriptions, Invoices, and Features."
@@ -673,13 +770,17 @@ $ claude
 
   Entity catalog produced: specs/entity-catalog.md (5 entities, 7 relationships)
 
-> /id3-design-information
+> /id3-start refine the model
+
+  Routing to /id3-design-information -- Refine conceptual model into logical model.
 
   Agent refines attributes, derives 14 business rules.
   specs/entity-catalog.md updated (version: 1.0)
   docs/business-rules.md updated (BR-001 through BR-014)
 
-> /id3-design-ui
+> /id3-start design the UI
+
+  Routing to /id3-design-ui -- Design and implement UI derived from the information model.
 
   Step 1: Deriving UI structure from 5 entities... 8 screens mapped
   Step 2: Design contract established (React + Tailwind detected)
@@ -690,7 +791,9 @@ $ claude
   specs/ui-structure.md generated
   specs/ui-design-contract.md generated
 
-> /id3-spawn-team
+> /id3-start build
+
+  Routing to /id3-spawn-team -- Spawn Agent Teams for parallel implementation.
 
   Spawning Agent Teams:
   - spec-generator: generating requirements.md, api-contracts.md
