@@ -43,11 +43,11 @@ Plans:
   3. User requests a pure UI task and gets routed directly to id3-design-ui, skipping entity identification
   4. User runs `/id3-start` without arguments and sees project status with suggested next action
   5. User runs `/id3-clear`, confirms, and all IDDD-generated files are removed
-**Plans**: TBD
+**Plans:** 2 plans
 
 Plans:
-- [ ] 02-01: TBD
-- [ ] 02-02: TBD
+- [ ] 02-01-PLAN.md -- id3-start smart router SKILL.md with reference files (phase-guide + dashboard-template)
+- [ ] 02-02-PLAN.md -- id3-clear project reset SKILL.md + structure validation
 
 ## Progress
 
@@ -57,4 +57,4 @@ Phases execute in numeric order: 1 -> 2
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
 | 1. Global Install & Skill Registration | 0/2 | Planning complete | - |
-| 2. Skills & UX | 0/0 | Not started | - |
+| 2. Skills & UX | 0/2 | Planning complete | - |
