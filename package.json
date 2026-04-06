@@ -8,7 +8,9 @@
   },
   "files": [
     "dist/",
-    "templates/"
+    "templates/",
+    "assets/",
+    "skills-global/"
   ],
   "scripts": {
     "build": "tsc && node dist/scripts/build-hooks.js",
