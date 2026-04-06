@@ -2,15 +2,14 @@
 gsd_state_version: 1.0
 milestone: v1.0
 milestone_name: milestone
-current_plan: Not started
-status: planning
-stopped_at: Phase 2 context gathered
-last_updated: "2026-04-06T11:24:47.728Z"
+status: unknown
+stopped_at: Completed 02-02-PLAN.md
+last_updated: "2026-04-06T12:40:43.250Z"
 progress:
   total_phases: 2
   completed_phases: 1
-  total_plans: 2
-  completed_plans: 2
+  total_plans: 4
+  completed_plans: 3
 ---
 
 # Project State
@@ -20,14 +19,12 @@ progress:
 See: .planning/PROJECT.md (updated 2026-04-06)
 
 **Core value:** Claude Code 안에서 슬래시 커맨드만으로 IDDD를 자연스럽게 사용할 수 있어야 한다.
-**Current focus:** Phase 01 — global-install-skill-registration
+**Current focus:** Phase 02 — skills-ux
 
 ## Current Position
 
-**Phase:** 01 (global-install-skill-registration) — EXECUTING
-**Current Plan:** Not started
-**Total Plans in Phase:** 2
-**Status:** Ready to plan
+Phase: 02 (skills-ux) — EXECUTING
+Plan: 2 of 2
 
 ## Performance Metrics
 
@@ -51,6 +48,7 @@ See: .planning/PROJECT.md (updated 2026-04-06)
 *Updated after each plan completion*
 | Phase 01 P01 | 3min | 1 tasks | 4 files |
 | Phase 01 P02 | 2min | 3 tasks | 1 files |
+| Phase 02 P02 | 2min | 2 tasks | 1 files |
 
 ## Accumulated Context
 
@@ -70,6 +68,8 @@ Recent decisions affecting current work:
 - [Phase 01]: Dynamic import for subcommand modules to keep startup fast
 - [Phase 01]: switch/case routing over CLI framework for zero dependencies
 - [Phase 01]: Process-spawn testing pattern for CLI integration tests
+- [Phase 02]: Self-contained id3-clear SKILL.md (127 lines) with disable-model-invocation: true
+- [Phase 02]: Known file list deletion pattern (no glob) for safe project reset
 
 ### Pending Todos
 
@@ -82,6 +82,6 @@ None yet.
 
 ## Session Continuity
 
-Last session: 2026-04-06T11:24:47.726Z
-Stopped at: Phase 2 context gathered
-Resume file: .planning/phases/02-skills-ux/02-CONTEXT.md
+Last session: 2026-04-06T12:40:43.248Z
+Stopped at: Completed 02-02-PLAN.md
+Resume file: None

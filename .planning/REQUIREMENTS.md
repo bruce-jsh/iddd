@@ -31,9 +31,9 @@ Requirements for this milestone. Each maps to roadmap phases.
 
 ### Clear
 
-- [ ] **CLR-01**: `/id3-clear` 실행 시 IDDD가 생성한 모든 파일/폴더를 삭제한다
-- [ ] **CLR-02**: 삭제 전 확인 메시지를 표시한다 (파괴적 작업)
-- [ ] **CLR-03**: 초기화 완료 후 결과 요약을 표시한다
+- [x] **CLR-01**: `/id3-clear` 실행 시 IDDD가 생성한 모든 파일/폴더를 삭제한다
+- [x] **CLR-02**: 삭제 전 확인 메시지를 표시한다 (파괴적 작업)
+- [x] **CLR-03**: 초기화 완료 후 결과 요약을 표시한다
 
 ### UX Enhancements
 
@@ -89,9 +89,9 @@ Deferred to future release. Tracked but not in current roadmap.
 | ROUT-08 | Phase 2 | Pending |
 | ROUT-09 | Phase 2 | Pending |
 | ROUT-10 | Phase 2 | Pending |
-| CLR-01 | Phase 2 | Pending |
-| CLR-02 | Phase 2 | Pending |
-| CLR-03 | Phase 2 | Pending |
+| CLR-01 | Phase 2 | Complete |
+| CLR-02 | Phase 2 | Complete |
+| CLR-03 | Phase 2 | Complete |
 | UX-01 | Phase 2 | Pending |
 | UX-02 | Phase 2 | Pending |
 | UX-03 | Phase 2 | Pending |
