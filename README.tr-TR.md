@@ -124,6 +124,16 @@ Bilgi modelinin her öğesi otomatik olarak geliştirme çıktılarını ima ede
 
 ## Kurulum
 
+### Önerilen: Global Kurulum
+
+```bash
+npm i -g id3-cli
+```
+
+Global kurulum, tüm projelerinizde çalışan iki global beceri (`/id3-start` ve `/id3-clear`) kaydeder. Ardından herhangi bir projede `/id3-start` komutunu çalıştırın -- IDDD'nin kurulu olup olmadığını otomatik algılar ve her şeyi halleder.
+
+### Alternatif: Proje Düzeyinde Kurulum
+
 ```bash
 npx id3-cli@latest
 ```
@@ -159,10 +169,14 @@ Hedef dizinde `CLAUDE.md` zaten mevcutsa, `id3-cli` şu soruyu sorar:
 │  Next steps:                                              │
 │                                                           │
 │    1. Fill in steering/product.md                         │
-│    2. Run /id3-identify-entities to start                  │
+│    2. Run /id3-start to begin (or /id3-identify-entities) │
 │    3. Customize steering/data-conventions.md              │
 │                                                           │
-│  Skills:                                                  │
+│  Global Skills (via npm i -g):                            │
+│    ├── id3-start               (Smart Router)             │
+│    └── id3-clear               (Project Reset)            │
+│                                                           │
+│  Project Skills (per-project):                            │
 │    ├── id3-identify-entities   (Phase 0/1)                │
 │    ├── id3-design-information  (Phase 2)                  │
 │    ├── id3-design-ui           (Phase 2.5)                │
@@ -177,7 +191,20 @@ Hedef dizinde `CLAUDE.md` zaten mevcutsa, `id3-cli` şu soruyu sorar:
 
 ## Kurulumdan Sonra Dizin Yapısı
 
-`npx id3-cli@latest` komutunu çalıştırdıktan sonra projeniz aşağıdaki yapıya sahip olur:
+`npm i -g id3-cli` komutunu çalıştırdıktan sonra aşağıdaki global beceriler sisteme kurulur:
+
+```
+~/.claude/skills-global/              Global beceriler (npm i -g ile kurulur)
+  ├── id3-start/                      Akıllı yönlendirici giriş noktası
+  │   ├── SKILL.md
+  │   └── references/
+  │       ├── phase-guide.md            Phase yönlendirme sınıflandırması
+  │       └── dashboard-template.md     İlerleme gösterge paneli formatı
+  └── id3-clear/                      Proje sıfırlama
+      └── SKILL.md
+```
+
+`npx id3-cli@latest` komutunu çalıştırdıktan sonra (veya `/id3-start` aracılığıyla otomatik olarak) projeniz aşağıdaki yapıya sahip olur:
 
 ```
 your-project/
@@ -334,21 +361,52 @@ Beceri içeriği tek bir kanonik konumda (`skills/`) tutulur. Platforma özgü y
 
 ### Phase Adım Adım
 
+> **İpucu:** Bireysel phase komutlarını ezberlemek yerine `/id3-start [isteğiniz]` komutunu kullanın. İlerleme gösterge panelini gösterir, niyetinizi analiz eder ve doğru phase becerisine otomatik yönlendirir. Bu, önerilen giriş noktasıdır.
+
 **Phase 0/1 -- Entity Tanımlama:**
-Yapay zeka kodlama ajanınızı açın ve `/id3-identify-entities` komutunu çalıştırın. Ajan, mevcut bir kod tabanınız (brownfield) olup olmadığını veya sıfırdan mı başladığınızı (greenfield) otomatik olarak algılar, ardından uygun tanımlama akışını çalıştırır.
+Yapay zeka kodlama ajanınızı açın ve `/id3-start alan entity'lerini tanımla` komutunu çalıştırın (ya da doğrudan `/id3-identify-entities`). Ajan, mevcut bir kod tabanınız (brownfield) olup olmadığını veya sıfırdan mı başladığınızı (greenfield) otomatik olarak algılar, ardından uygun tanımlama akışını çalıştırır.
 
 **Phase 2 -- Bilgi Tasarımı:**
-`/id3-design-information` komutunu çalıştırın. Ajan kavramsal modeli mantıksal modele dönüştürür, iş kurallarını türetir ve sürüm başlıkları ile Hook yapılandırmalarını ayarlar.
+`/id3-start bilgi modelini iyileştir` komutunu çalıştırın (ya da doğrudan `/id3-design-information`). Ajan kavramsal modeli mantıksal modele dönüştürür, iş kurallarını türetir ve sürüm başlıkları ile Hook yapılandırmalarını ayarlar.
 
 **Phase 2.5 -- UI Tasarımı:**
-`/id3-design-ui` komutunu çalıştırın. Ajan, Entity kataloğundan ekran yapısını türetir, tasarım token'ları ile görsel tasarım sözleşmesi oluşturur, etkileşimli mockup önizlemesi ile 7-Pillar kalite kapısı çalıştırır ve ardından paralel ekran uygulaması için Agent Teams oluşturarak uygulama sonrası denetim gerçekleştirir.
+`/id3-start UI'yi tasarla` komutunu çalıştırın (ya da doğrudan `/id3-design-ui`). Ajan, Entity kataloğundan ekran yapısını türetir, tasarım token'ları ile görsel tasarım sözleşmesi oluşturur, etkileşimli mockup önizlemesi ile 7-Pillar kalite kapısı çalıştırır ve ardından paralel ekran uygulaması için Agent Teams oluşturarak uygulama sonrası denetim gerçekleştirir.
 
 **Phase 3-5 -- Agent Teams ile Uygulama:**
-`/id3-spawn-team` komutunu çalıştırın. Ajan, sonlandırılmış bilgi modelini okur ve sistemi paralel olarak uygulamak için özelleşmiş ajanlardan oluşan bir takım (spec-generator, implementer, qa-reviewer) oluşturur.
+`/id3-start sistemi geliştir` komutunu çalıştırın (ya da doğrudan `/id3-spawn-team`). Ajan, sonlandırılmış bilgi modelini okur ve sistemi paralel olarak uygulamak için özelleşmiş ajanlardan oluşan bir takım (spec-generator, implementer, qa-reviewer) oluşturur.
 
 ---
 
 ## Beceriler
+
+### id3-start (Global -- Akıllı Yönlendirici)
+
+IDDD için akıllı giriş noktası. Kullanıcıların bireysel phase beceri adlarını ezberlemesi gerekmez -- `/id3-start` isteği analiz eder ve doğru beceriye otomatik yönlendirir.
+
+**Tetikleme anahtar kelimeleri:** `start IDDD`, `begin project`, `what should I do next`, `identify entities`, `design information`, `design ui`, `build`, `audit`, `preview`
+
+**Yetenekler:**
+
+1. **Otomatik kurulum:** Mevcut projede IDDD'nin kurulu olup olmadığını algılar (`specs/entity-catalog.md` + `CLAUDE.md`). Kurulu değilse, devam etmeden önce IDDD'yi kurmak için `npx id3-cli .` komutunu otomatik olarak çalıştırır.
+2. **İlerleme gösterge paneli:** Her phase için tamamlanma durumunu (Phase 0/1, Phase 2, Phase 2.5, Phase 3-5) görsel semboller (tamamlandı için onay işareti, devam ediyor için elmas, başlanmadı için daire) ve ilerleme çubuğu ile gösterir.
+3. **Niyet yönlendirme:** Kullanıcının doğal dil isteğini phase sinyal anahtar kelimelerine göre analiz eder ve doğru phase becerisine (`/id3-identify-entities`, `/id3-design-information`, `/id3-design-ui`, `/id3-spawn-team`, `/id3-info-audit` veya `/id3-preview`) yönlendirir.
+4. **Belirsiz istek yönetimi:** Bir istek birden fazla phase ile eşleşebiliyorsa (örn. "listeye filtre ekle" yalnızca UI veya yeni veri entity'leri gerektirebilir), yönlendirmeden önce bir netleştirme sorusu sorar.
+5. **UI hızlı yolu:** İstek yalnızca açık UI anahtar kelimeleri içeriyorsa ve halihazırda bir veri modeli mevcutsa (sürüm >= 1.0), entity'ler hakkında sormadan doğrudan `/id3-design-ui`'ya yönlendirir.
+6. **Ön koşul kontrolü:** Hedef phase karşılanmamış ön koşullara sahipse uyarır ve doğru başlangıç phase'ini önerir.
+
+**Kullanım:**
+
+```
+/id3-start                          Gösterge panelini göster + sonraki eylemi öner
+/id3-start identify the entities    /id3-identify-entities'e yönlendir
+/id3-start design the UI            /id3-design-ui'ya yönlendir
+/id3-start build the system         /id3-spawn-team'e yönlendir
+/id3-start run an audit             /id3-info-audit'e yönlendir
+```
+
+**Kurulum:** `npm i -g id3-cli` aracılığıyla `~/.claude/skills-global/id3-start/` konumuna global olarak kurulur.
+
+---
 
 ### id3-identify-entities (Phase 0/1)
 
@@ -498,6 +556,30 @@ Sunucu `listen(0)` (işletim sistemi tarafından atanan port) kullanır ve şunl
 - **Denetim Gösterge Paneli** -- İş kuralı kapsamı ile Entity bazında durum kartları
 
 Tüm HTML dosyaları `.iddd/preview/` içinde kalıcıdır ve sunucu olmadan bile doğrudan tarayıcıda açılabilir.
+
+---
+
+### id3-clear (Global -- Proje Sıfırlama)
+
+Mevcut projeden tüm IDDD tarafından oluşturulan dosyaları güvenle kaldırır ve projeyi IDDD öncesi durumuna geri döndürür.
+
+**Tetikleme anahtar kelimeleri:** `clear iddd`, `reset iddd`, `remove iddd`, `clean project`
+
+**Prosedür:**
+
+1. **Kurulumu doğrula:** Projede IDDD dosyalarının mevcut olup olmadığını kontrol eder. Hiçbiri bulunamazsa "No IDDD files found" mesajı verir ve durur.
+2. **Hedefleri tara:** Hangi IDDD dizinlerinin (`specs/`, `docs/`, `steering/`, `hooks/`, `skills/`, `.claude/skills/`, `.claude/hooks/`, `.codex/skills/`, `.agents/skills/`, `.iddd/`) ve dosyaların (`CLAUDE.md`, `AGENTS.md`) gerçekten mevcut olduğunu belirler.
+3. **Uyarı göster:** Silinecek tüm dosya ve dizinlerin ayrıntılı listesini görüntüler. Kullanıcı tarafından yazılmış dosyalar için özel uyarılar ekler (`steering/product.md`, `steering/data-conventions.md`).
+4. **Onay iste:** `[y/N]` ile onay ister (varsayılan N). Yalnızca açık "y" veya "yes" yanıtında devam eder.
+5. **Silme işlemini gerçekleştir:** Yalnızca belirlenen hedefleri kaldırır. Sayılarla tamamlanma özetini gösterir.
+
+**Güvenlik kuralları:**
+- Bilinen IDDD dosya listesi dışındaki dosyaları asla silmez
+- `rm -rf *` gibi glob desenleri asla kullanmaz
+- Onay adımını asla atlamaz
+- Seçici silme için bunun yerine manuel dosya işlemlerini kullanın
+
+**Kurulum:** `npm i -g id3-cli` aracılığıyla `~/.claude/skills-global/id3-clear/` konumuna global olarak kurulur.
 
 ---
 
@@ -657,13 +739,28 @@ IDDD, projenizin kurallarına uyarlanacak şekilde tasarlanmıştır. Neyi ve ne
 ### Örnek 1: Yeni Bir Proje Başlatma (Greenfield)
 
 ```
+$ npm i -g id3-cli
 $ mkdir my-saas && cd my-saas && git init
-$ npx id3-cli@latest
-
-  IDDD installed. Next: fill in steering/product.md
-
 $ claude
-> /id3-identify-entities
+> /id3-start
+
+  ╔════════════════════════════════════════════════════════════════╗
+  ║  Welcome to IDDD -- Information Design-Driven Development.     ║
+  ║  Your information model is your harness.                       ║
+  ╚════════════════════════════════════════════════════════════════╝
+
+  IDDD is not set up in this project. Setting up now...
+  IDDD initialized. Here is your project dashboard:
+
+  (dashboard shows all phases as ○ -- not started)
+
+  > Suggested next action: Entity Identification (Phase 0/1).
+  > Use `/id3-start [your request]` to begin.
+
+> /id3-start identify the entities in my SaaS domain
+
+  Routing to /id3-identify-entities -- Identify domain entities through structured interview.
+  This phase produces: specs/entity-catalog.md, specs/data-model.md, docs/business-rules.md
 
   Agent: "What core 'things' does your system manage?"
   You: "Users, Organizations, Subscriptions, Invoices, and Features."
@@ -673,13 +770,17 @@ $ claude
 
   Entity catalog produced: specs/entity-catalog.md (5 entities, 7 relationships)
 
-> /id3-design-information
+> /id3-start refine the model
+
+  Routing to /id3-design-information -- Refine conceptual model into logical model.
 
   Agent refines attributes, derives 14 business rules.
   specs/entity-catalog.md updated (version: 1.0)
   docs/business-rules.md updated (BR-001 through BR-014)
 
-> /id3-design-ui
+> /id3-start design the UI
+
+  Routing to /id3-design-ui -- Design and implement UI derived from the information model.
 
   Step 1: Deriving UI structure from 5 entities... 8 screens mapped
   Step 2: Design contract established (React + Tailwind detected)
@@ -690,7 +791,9 @@ $ claude
   specs/ui-structure.md generated
   specs/ui-design-contract.md generated
 
-> /id3-spawn-team
+> /id3-start build
+
+  Routing to /id3-spawn-team -- Spawn Agent Teams for parallel implementation.
 
   Spawning Agent Teams:
   - spec-generator: generating requirements.md, api-contracts.md
