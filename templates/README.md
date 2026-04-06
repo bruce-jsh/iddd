@@ -47,6 +47,16 @@ on your machine.
 
 ## Installation
 
+### Recommended: Global Install
+
+```bash
+npm i -g id3-cli
+```
+
+This registers `/id3-start` and `/id3-clear` as global slash commands. Then use `/id3-start` in any project as your entry point.
+
+### Alternative: Project-Level Setup
+
 ```bash
 npx id3-cli@latest
 ```
@@ -217,6 +227,8 @@ your-project/
 
 ## Quick Start
 
+> **Tip:** If you installed globally (`npm i -g id3-cli`), just run `/id3-start [your request]` — it auto-detects IDDD status and routes to the correct phase. The steps below describe the full manual flow; `/id3-start` is the recommended shortcut for all of them.
+
 ### Step 1: Initialize IDDD in your project
 
 ```bash
@@ -269,6 +281,43 @@ The agent runs Phase 2.5: it derives screen structure from the entity catalog
 mockup previews, and spawns Agent Teams for parallel screen implementation with
 post-audit. After Phase 2.5 completes, use `/id3-spawn-team` to dispatch
 implementation agents.
+
+---
+
+## Global Commands
+
+### id3-start (Global — Smart Router)
+
+The recommended entry point for all IDDD work. Available globally after `npm i -g id3-cli`.
+
+**What it does:**
+1. Checks if IDDD is set up in the current project (auto-runs `npx id3-cli .` if not)
+2. Shows a progress dashboard with phase completion status
+3. Analyzes your request and routes to the correct phase skill
+4. Handles ambiguous requests with clarification questions
+
+**Usage:**
+```
+/id3-start                     Show dashboard + suggest next action
+/id3-start identify entities   Route to Phase 0/1
+/id3-start design the UI       Route to Phase 2.5 (fast-path)
+/id3-start audit the model     Route to info-audit
+```
+
+### id3-clear (Global — Project Reset)
+
+Removes all IDDD-generated files from the project, restoring it to pre-IDDD state.
+
+**Safety features:**
+- Lists all files to be deleted before any action
+- Warns about user-authored files (steering/product.md, steering/data-conventions.md)
+- Requires explicit `y` confirmation (default: N = no deletion)
+- Only deletes known IDDD paths — never uses glob patterns
+
+**Usage:**
+```
+/id3-clear
+```
 
 ---
 

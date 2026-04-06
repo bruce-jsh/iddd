@@ -174,6 +174,17 @@ All preview HTML files are stored in `.iddd/preview/` and persist between sessio
 
 ---
 
+## Global Commands
+
+These commands are available after a global install (`npm i -g id3-cli`) and work in any project.
+
+| Command | Description |
+|---------|-------------|
+| `/id3-start [request]` | Smart router — auto-detects IDDD status, shows a progress dashboard, and routes your request to the correct phase skill. Use this as the primary entry point for all IDDD work. |
+| `/id3-clear` | Removes all IDDD-generated files from the project. Lists files first, warns about user-authored files, and requires explicit `y` confirmation before deleting anything. |
+
+---
+
 ## New Feature Workflow
 
 When adding a new feature:
