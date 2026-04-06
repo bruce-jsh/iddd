@@ -124,6 +124,16 @@ You need Node.js for the `npx` installer. The AI platform subscription is requir
 
 ## Installation
 
+### Recommended: Global Install
+
+```bash
+npm i -g id3-cli
+```
+
+Global install registers two global skills (`/id3-start` and `/id3-clear`) that work across all your projects. Then in any project, just run `/id3-start` -- it auto-detects whether IDDD is set up and handles everything.
+
+### Alternative: Project-Level Setup
+
 ```bash
 npx id3-cli@latest
 ```
@@ -159,10 +169,14 @@ If `CLAUDE.md` already exists in the target directory, `id3-cli` will prompt:
 │  Next steps:                                              │
 │                                                           │
 │    1. Fill in steering/product.md                         │
-│    2. Run /id3-identify-entities to start                  │
+│    2. Run /id3-start to begin (or /id3-identify-entities) │
 │    3. Customize steering/data-conventions.md              │
 │                                                           │
-│  Skills:                                                  │
+│  Global Skills (via npm i -g):                            │
+│    ├── id3-start               (Smart Router)             │
+│    └── id3-clear               (Project Reset)            │
+│                                                           │
+│  Project Skills (per-project):                            │
 │    ├── id3-identify-entities   (Phase 0/1)                │
 │    ├── id3-design-information  (Phase 2)                  │
 │    ├── id3-design-ui           (Phase 2.5)                │
@@ -177,7 +191,20 @@ If `CLAUDE.md` already exists in the target directory, `id3-cli` will prompt:
 
 ## Directory Structure After Installation
 
-After running `npx id3-cli@latest`, your project gains the following structure:
+After running `npm i -g id3-cli`, the following global skills are installed system-wide:
+
+```
+~/.claude/skills-global/              Global skills (installed by npm i -g)
+  ├── id3-start/                      Smart router entry point
+  │   ├── SKILL.md
+  │   └── references/
+  │       ├── phase-guide.md            Phase routing taxonomy
+  │       └── dashboard-template.md     Progress dashboard format
+  └── id3-clear/                      Project reset
+      └── SKILL.md
+```
+
+After running `npx id3-cli@latest` (or automatically via `/id3-start`), your project gains the following structure:
 
 ```
 your-project/
@@ -334,21 +361,52 @@ Skill content is maintained in a single canonical location (`skills/`). Platform
 
 ### Phase Walkthrough
 
+> **Tip:** Instead of remembering individual phase commands, use `/id3-start [your request]`. It shows a progress dashboard, analyzes your intent, and routes to the correct phase skill automatically. This is the recommended entry point.
+
 **Phase 0/1 -- Entity Identification:**
-Open your AI coding agent and run `/id3-identify-entities`. The agent automatically detects whether you have an existing codebase (brownfield) or are starting fresh (greenfield), then runs the appropriate identification flow.
+Open your AI coding agent and run `/id3-start identify the entities in my domain` (or directly `/id3-identify-entities`). The agent automatically detects whether you have an existing codebase (brownfield) or are starting fresh (greenfield), then runs the appropriate identification flow.
 
 **Phase 2 -- Information Design:**
-Run `/id3-design-information`. The agent refines the conceptual model into a logical model, derives business rules, and sets up version headers and hook configurations.
+Run `/id3-start refine the information model` (or directly `/id3-design-information`). The agent refines the conceptual model into a logical model, derives business rules, and sets up version headers and hook configurations.
 
 **Phase 2.5 -- UI Design:**
-Run `/id3-design-ui`. The agent derives screen structure from the entity catalog, establishes a visual design contract with design tokens, runs a 7-pillar quality gate with interactive mockup preview, and then spawns Agent Teams for parallel screen implementation with post-audit.
+Run `/id3-start design the UI` (or directly `/id3-design-ui`). The agent derives screen structure from the entity catalog, establishes a visual design contract with design tokens, runs a 7-pillar quality gate with interactive mockup preview, and then spawns Agent Teams for parallel screen implementation with post-audit.
 
 **Phase 3-5 -- Implementation via Agent Teams:**
-Run `/id3-spawn-team`. The agent reads the finalized information model and spawns a team of specialized agents (spec-generator, implementer, qa-reviewer) to implement the system in parallel.
+Run `/id3-start build the system` (or directly `/id3-spawn-team`). The agent reads the finalized information model and spawns a team of specialized agents (spec-generator, implementer, qa-reviewer) to implement the system in parallel.
 
 ---
 
 ## Skills
+
+### id3-start (Global -- Smart Router)
+
+The smart entry point for IDDD. Users do not need to remember individual phase skill names -- `/id3-start` analyzes the request and routes to the correct skill automatically.
+
+**Trigger keywords:** `start IDDD`, `begin project`, `what should I do next`, `identify entities`, `design information`, `design ui`, `build`, `audit`, `preview`
+
+**Capabilities:**
+
+1. **Auto-setup:** Detects if IDDD is installed in the current project (`specs/entity-catalog.md` + `CLAUDE.md`). If not, runs `npx id3-cli .` automatically to set up IDDD before proceeding.
+2. **Progress dashboard:** Shows the phase pipeline with completion status for each phase (Phase 0/1, Phase 2, Phase 2.5, Phase 3-5) using visual symbols (checkmark for complete, diamond for in-progress, circle for not started) and a progress bar.
+3. **Intent routing:** Analyzes the user's natural language request against phase signal keywords and routes to the correct phase skill (`/id3-identify-entities`, `/id3-design-information`, `/id3-design-ui`, `/id3-spawn-team`, `/id3-info-audit`, or `/id3-preview`).
+4. **Ambiguous request handling:** When a request could match multiple phases (e.g., "add filter to the list" could be UI-only or require new data entities), asks a clarification question before routing.
+5. **UI fast-path:** If the request contains only explicit UI keywords and a data model already exists (version >= 1.0), routes directly to `/id3-design-ui` without asking about entities.
+6. **Prerequisite checking:** Warns if the target phase has unmet prerequisites and suggests the correct starting phase.
+
+**Usage:**
+
+```
+/id3-start                          Show dashboard + suggest next action
+/id3-start identify the entities    Route to /id3-identify-entities
+/id3-start design the UI            Route to /id3-design-ui
+/id3-start build the system         Route to /id3-spawn-team
+/id3-start run an audit             Route to /id3-info-audit
+```
+
+**Installation:** Installed globally via `npm i -g id3-cli` at `~/.claude/skills-global/id3-start/`.
+
+---
 
 ### id3-identify-entities (Phase 0/1)
 
@@ -498,6 +556,30 @@ The server uses `listen(0)` (OS-assigned port) and serves:
 - **Audit Dashboard** -- Per-entity status cards with business rule coverage
 
 All HTML files persist in `.iddd/preview/` and can be opened directly in a browser even without the server.
+
+---
+
+### id3-clear (Global -- Project Reset)
+
+Safely removes all IDDD-generated files from the current project, restoring it to its pre-IDDD state.
+
+**Trigger keywords:** `clear iddd`, `reset iddd`, `remove iddd`, `clean project`
+
+**Procedure:**
+
+1. **Verify installation:** Checks if IDDD files exist in the project. If none found, reports "No IDDD files found" and stops.
+2. **Scan targets:** Identifies which IDDD directories (`specs/`, `docs/`, `steering/`, `hooks/`, `skills/`, `.claude/skills/`, `.claude/hooks/`, `.codex/skills/`, `.agents/skills/`, `.iddd/`) and files (`CLAUDE.md`, `AGENTS.md`) actually exist.
+3. **Show warning:** Displays a detailed list of all files and directories that will be deleted. Adds special annotations for user-authored files (`steering/product.md`, `steering/data-conventions.md`).
+4. **Require confirmation:** Prompts with `[y/N]` (default N). Only proceeds on explicit "y" or "yes".
+5. **Execute deletion:** Removes only the identified targets. Shows completion summary with counts.
+
+**Safety rules:**
+- Never deletes files outside the known IDDD file list
+- Never uses glob patterns like `rm -rf *`
+- Never skips the confirmation step
+- For selective deletion, use manual file operations instead
+
+**Installation:** Installed globally via `npm i -g id3-cli` at `~/.claude/skills-global/id3-clear/`.
 
 ---
 
@@ -657,13 +739,28 @@ IDDD is designed to be adapted to your project's conventions. Here is what to cu
 ### Example 1: Starting a New Project (Greenfield)
 
 ```
+$ npm i -g id3-cli
 $ mkdir my-saas && cd my-saas && git init
-$ npx id3-cli@latest
-
-  IDDD installed. Next: fill in steering/product.md
-
 $ claude
-> /id3-identify-entities
+> /id3-start
+
+  ╔════════════════════════════════════════════════════════════════╗
+  ║  Welcome to IDDD -- Information Design-Driven Development.     ║
+  ║  Your information model is your harness.                       ║
+  ╚════════════════════════════════════════════════════════════════╝
+
+  IDDD is not set up in this project. Setting up now...
+  IDDD initialized. Here is your project dashboard:
+
+  (dashboard shows all phases as ○ -- not started)
+
+  > Suggested next action: Entity Identification (Phase 0/1).
+  > Use `/id3-start [your request]` to begin.
+
+> /id3-start identify the entities in my SaaS domain
+
+  Routing to /id3-identify-entities -- Identify domain entities through structured interview.
+  This phase produces: specs/entity-catalog.md, specs/data-model.md, docs/business-rules.md
 
   Agent: "What core 'things' does your system manage?"
   You: "Users, Organizations, Subscriptions, Invoices, and Features."
@@ -673,13 +770,17 @@ $ claude
 
   Entity catalog produced: specs/entity-catalog.md (5 entities, 7 relationships)
 
-> /id3-design-information
+> /id3-start refine the model
+
+  Routing to /id3-design-information -- Refine conceptual model into logical model.
 
   Agent refines attributes, derives 14 business rules.
   specs/entity-catalog.md updated (version: 1.0)
   docs/business-rules.md updated (BR-001 through BR-014)
 
-> /id3-design-ui
+> /id3-start design the UI
+
+  Routing to /id3-design-ui -- Design and implement UI derived from the information model.
 
   Step 1: Deriving UI structure from 5 entities... 8 screens mapped
   Step 2: Design contract established (React + Tailwind detected)
@@ -690,7 +791,9 @@ $ claude
   specs/ui-structure.md generated
   specs/ui-design-contract.md generated
 
-> /id3-spawn-team
+> /id3-start build
+
+  Routing to /id3-spawn-team -- Spawn Agent Teams for parallel implementation.
 
   Spawning Agent Teams:
   - spec-generator: generating requirements.md, api-contracts.md
