@@ -10,11 +10,11 @@ Requirements for this milestone. Each maps to roadmap phases.
 ### Global Install
 
 - [ ] **INST-01**: `npm i -g id3-cli`로 글로벌 설치 시 CLI와 스킬 파일이 함께 설치된다
-- [ ] **INST-02**: 글로벌 설치 시 `~/.claude/skills/id3-start/SKILL.md`가 자동 등록된다
-- [ ] **INST-03**: 글로벌 설치 시 `~/.claude/skills/id3-clear/SKILL.md`가 자동 등록된다
+- [x] **INST-02**: 글로벌 설치 시 `~/.claude/skills/id3-start/SKILL.md`가 자동 등록된다
+- [x] **INST-03**: 글로벌 설치 시 `~/.claude/skills/id3-clear/SKILL.md`가 자동 등록된다
 - [ ] **INST-04**: `npx id3-cli` 기존 방식이 하위 호환으로 동작한다
-- [ ] **INST-05**: 크로스 플랫폼(macOS, Linux, Windows) 경로 처리가 정상 동작한다
-- [ ] **INST-06**: `npm uninstall -g id3-cli` 시 등록된 스킬 파일이 정리된다
+- [x] **INST-05**: 크로스 플랫폼(macOS, Linux, Windows) 경로 처리가 정상 동작한다
+- [x] **INST-06**: `npm uninstall -g id3-cli` 시 등록된 스킬 파일이 정리된다
 
 ### Smart Router
 
@@ -74,11 +74,11 @@ Deferred to future release. Tracked but not in current roadmap.
 | Requirement | Phase | Status |
 |-------------|-------|--------|
 | INST-01 | Phase 1 | Pending |
-| INST-02 | Phase 1 | Pending |
-| INST-03 | Phase 1 | Pending |
+| INST-02 | Phase 1 | Complete |
+| INST-03 | Phase 1 | Complete |
 | INST-04 | Phase 1 | Pending |
-| INST-05 | Phase 1 | Pending |
-| INST-06 | Phase 1 | Pending |
+| INST-05 | Phase 1 | Complete |
+| INST-06 | Phase 1 | Complete |
 | ROUT-01 | Phase 2 | Pending |
 | ROUT-02 | Phase 2 | Pending |
 | ROUT-03 | Phase 2 | Pending |
