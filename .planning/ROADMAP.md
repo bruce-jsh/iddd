@@ -27,11 +27,11 @@ Decimal phases appear between their surrounding integers in numeric order.
   3. User runs `npx id3-cli .` and it works exactly as before (backward compatibility)
   4. Skill registration and CLI paths work correctly on macOS, Linux, and Windows
   5. User runs `npm uninstall -g id3-cli` and registered skill files are cleaned up
-**Plans**: TBD
+**Plans:** 2 plans
 
 Plans:
-- [ ] 01-01: TBD
-- [ ] 01-02: TBD
+- [ ] 01-01-PLAN.md -- Skill registration foundation (placeholder SKILL.md files + register-skills module + tests)
+- [ ] 01-02-PLAN.md -- CLI subcommands, postinstall script, package.json updates
 
 ### Phase 2: Skills & UX
 **Goal**: Users can run `/id3-start [request]` for auto-setup + smart routing with progress dashboard, and `/id3-clear` for project reset
@@ -56,5 +56,5 @@ Phases execute in numeric order: 1 -> 2
 
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
-| 1. Global Install & Skill Registration | 0/0 | Not started | - |
+| 1. Global Install & Skill Registration | 0/2 | Planning complete | - |
 | 2. Skills & UX | 0/0 | Not started | - |
