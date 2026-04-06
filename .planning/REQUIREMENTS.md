@@ -18,16 +18,16 @@ Requirements for this milestone. Each maps to roadmap phases.
 
 ### Smart Router
 
-- [ ] **ROUT-01**: `/id3-start [요청]` 입력 시 IDDD 미설치면 자동으로 프로젝트 셋업을 먼저 실행한다
-- [ ] **ROUT-02**: 자동 셋업 후 또는 IDDD 설치 상태에서 자연어를 분석하여 적절한 Phase로 라우팅한다
-- [ ] **ROUT-03**: 프로젝트 상태(specs 파일 존재 여부, YAML 헤더)를 읽어 라우팅 결정에 반영한다
-- [ ] **ROUT-04**: 라우팅 시 "이 요청은 Phase X로 진행합니다" 안내 메시지를 표시한다
-- [ ] **ROUT-05**: 정보정의가 불필요한 UI 요청은 id3-design-ui로 직행한다
-- [ ] **ROUT-06**: 의도가 불명확한 요청에 대해 명확화 질문을 한다
-- [ ] **ROUT-07**: 라우팅 결정 후 대상 스킬을 실제로 호출한다
-- [ ] **ROUT-08**: Phase 전제조건이 충족되지 않으면 올바른 시작점으로 안내한다
-- [ ] **ROUT-09**: `$ARGUMENTS`를 통해 사용자 입력을 대상 스킬에 전달한다
-- [ ] **ROUT-10**: 이미 초기화된 프로젝트에서 자동 셋업이 중복 실행되지 않는다 (멱등)
+- [x] **ROUT-01**: `/id3-start [요청]` 입력 시 IDDD 미설치면 자동으로 프로젝트 셋업을 먼저 실행한다
+- [x] **ROUT-02**: 자동 셋업 후 또는 IDDD 설치 상태에서 자연어를 분석하여 적절한 Phase로 라우팅한다
+- [x] **ROUT-03**: 프로젝트 상태(specs 파일 존재 여부, YAML 헤더)를 읽어 라우팅 결정에 반영한다
+- [x] **ROUT-04**: 라우팅 시 "이 요청은 Phase X로 진행합니다" 안내 메시지를 표시한다
+- [x] **ROUT-05**: 정보정의가 불필요한 UI 요청은 id3-design-ui로 직행한다
+- [x] **ROUT-06**: 의도가 불명확한 요청에 대해 명확화 질문을 한다
+- [x] **ROUT-07**: 라우팅 결정 후 대상 스킬을 실제로 호출한다
+- [x] **ROUT-08**: Phase 전제조건이 충족되지 않으면 올바른 시작점으로 안내한다
+- [x] **ROUT-09**: `$ARGUMENTS`를 통해 사용자 입력을 대상 스킬에 전달한다
+- [x] **ROUT-10**: 이미 초기화된 프로젝트에서 자동 셋업이 중복 실행되지 않는다 (멱등)
 
 ### Clear
 
@@ -37,9 +37,9 @@ Requirements for this milestone. Each maps to roadmap phases.
 
 ### UX Enhancements
 
-- [ ] **UX-01**: `/id3-start` 실행 시 프로젝트 진행 대시보드를 표시한다 (Phase별 완료 상태)
-- [ ] **UX-02**: 인수 없이 `/id3-start`만 입력 시 현재 상태를 분석하여 다음 액션을 제안한다
-- [ ] **UX-03**: 라우팅 안내에 해당 Phase의 설명과 산출물 정보를 포함한다
+- [x] **UX-01**: `/id3-start` 실행 시 프로젝트 진행 대시보드를 표시한다 (Phase별 완료 상태)
+- [x] **UX-02**: 인수 없이 `/id3-start`만 입력 시 현재 상태를 분석하여 다음 액션을 제안한다
+- [x] **UX-03**: 라우팅 안내에 해당 Phase의 설명과 산출물 정보를 포함한다
 
 ## v2 Requirements
 
@@ -79,22 +79,22 @@ Deferred to future release. Tracked but not in current roadmap.
 | INST-04 | Phase 1 | Complete |
 | INST-05 | Phase 1 | Complete |
 | INST-06 | Phase 1 | Complete |
-| ROUT-01 | Phase 2 | Pending |
-| ROUT-02 | Phase 2 | Pending |
-| ROUT-03 | Phase 2 | Pending |
-| ROUT-04 | Phase 2 | Pending |
-| ROUT-05 | Phase 2 | Pending |
-| ROUT-06 | Phase 2 | Pending |
-| ROUT-07 | Phase 2 | Pending |
-| ROUT-08 | Phase 2 | Pending |
-| ROUT-09 | Phase 2 | Pending |
-| ROUT-10 | Phase 2 | Pending |
+| ROUT-01 | Phase 2 | Complete |
+| ROUT-02 | Phase 2 | Complete |
+| ROUT-03 | Phase 2 | Complete |
+| ROUT-04 | Phase 2 | Complete |
+| ROUT-05 | Phase 2 | Complete |
+| ROUT-06 | Phase 2 | Complete |
+| ROUT-07 | Phase 2 | Complete |
+| ROUT-08 | Phase 2 | Complete |
+| ROUT-09 | Phase 2 | Complete |
+| ROUT-10 | Phase 2 | Complete |
 | CLR-01 | Phase 2 | Complete |
 | CLR-02 | Phase 2 | Complete |
 | CLR-03 | Phase 2 | Complete |
-| UX-01 | Phase 2 | Pending |
-| UX-02 | Phase 2 | Pending |
-| UX-03 | Phase 2 | Pending |
+| UX-01 | Phase 2 | Complete |
+| UX-02 | Phase 2 | Complete |
+| UX-03 | Phase 2 | Complete |
 
 **Coverage:**
 - v1 requirements: 22 total
