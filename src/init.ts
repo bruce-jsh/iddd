@@ -98,7 +98,7 @@ async function createSkillSymlinks(targetDir: string): Promise<void> {
     'id3-info-audit',
     'id3-preview',
   ];
-  const platforms = ['.claude', '.agents'];
+  const platforms = ['.claude', '.agents', '.codex'];
 
   for (const skill of skills) {
     const original = join(targetDir, 'skills', skill, 'SKILL.md');
@@ -120,7 +120,7 @@ async function copySkillFiles(targetDir: string): Promise<void> {
     'id3-info-audit',
     'id3-preview',
   ];
-  const platformDirs = ['.claude', '.agents'];
+  const platformDirs = ['.claude', '.agents', '.codex'];
 
   for (const skill of skills) {
     const original = join(targetDir, 'skills', skill, 'SKILL.md');
