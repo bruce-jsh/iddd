@@ -7,7 +7,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 
 ## [Unreleased]
 
-## [1.0.0] - TBD
+## [1.0.0] - 2026-04-07
 
 ### Added
 - IDDD methodology as AI agent skill package for Claude Code and OpenAI Codex
