@@ -3,8 +3,6 @@ name: id3-identify-entities
 description: >
   Identify domain entities from existing code (brownfield) or through structured
   interview (greenfield). This is the IDDD workflow entry point.
-  Trigger: identify entities, information analysis, domain analysis, new project,
-  information design, entity identification
 allowed-tools: Read, Glob, Grep, Bash, Write, Edit
 user-invocable: true
 ---

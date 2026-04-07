@@ -4,8 +4,6 @@ description: >
   Design and implement UI from the information model. Derives screen structure
   from entities, establishes visual design contracts, generates HTML mockups
   for review, and implements screens via Agent Teams.
-  Trigger: design ui, ui design, screen design, frontend design, implement ui,
-  Phase 2.5, information representation
 allowed-tools: Read, Glob, Grep, Bash, Write, Edit
 user-invocable: true
 ---

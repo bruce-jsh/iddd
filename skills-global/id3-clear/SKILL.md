@@ -3,7 +3,6 @@ name: id3-clear
 description: >
   Reset IDDD project. Removes all IDDD-generated files and folders,
   restoring the project to pre-IDDD state. Shows confirmation before deletion.
-  Trigger: clear iddd, reset iddd, remove iddd, clean project
 user-invocable: true
 disable-model-invocation: true
 allowed-tools: Read Glob Grep Bash Write Edit

@@ -3,8 +3,6 @@ name: id3-design-information
 description: >
   Refine conceptual model into logical model. Auto-derive business rules,
   validity constraints, and derivation rules from the information model.
-  Trigger: information structuring, model refinement, logical model, schema design,
-  design information, refine model
 allowed-tools: Read, Glob, Grep, Bash, Write, Edit
 user-invocable: true
 ---

@@ -3,8 +3,6 @@ name: id3-start
 description: >
   IDDD smart entry point. Analyzes your request and routes to the right
   IDDD phase. Auto-sets up IDDD if not initialized. Shows progress dashboard.
-  Trigger: start IDDD, begin project, what should I do next, identify entities,
-  design information, design ui, build, audit, preview
 user-invocable: true
 allowed-tools: Read Glob Grep Bash Write Edit
 ---
@@ -127,14 +125,14 @@ The dashboard consists of 4 sections rendered in order:
 
 Show the suggested next action based on the current phase state. Format:
 
-> Suggested next action: {phase name}. Use `/id3-start [your request]` to begin.
+> Suggested next action: {phase name}. Run `{command}` to begin.
 
-Use these phase name mappings:
-- Phase 0/1 not started: "Entity Identification (Phase 0/1)"
-- Phase 0/1 complete: "Information Design (Phase 2)"
-- Phase 2 complete: "UI Design (Phase 2.5)"
-- Phase 2.5 complete: "Implementation (Phase 3-5)"
-- All complete: suggest running /id3-info-audit
+Use these phase-to-command mappings:
+- Phase 0/1 not started: "Entity Identification (Phase 0/1)" → `/id3-identify-entities`
+- Phase 0/1 complete: "Information Design (Phase 2)" → `/id3-design-information`
+- Phase 2 complete: "UI Design (Phase 2.5)" → `/id3-design-ui`
+- Phase 2.5 complete: "Implementation (Phase 3-5)" → `/id3-spawn-team`
+- All complete: suggest running `/id3-info-audit`
 
 Stop here. Do not attempt routing.
 

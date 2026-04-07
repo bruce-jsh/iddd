@@ -4,8 +4,6 @@ description: >
   Run a comprehensive information model audit. Compares entity-catalog.md against
   the actual codebase, checks business rule enforcement, UI consistency, version
   headers, and hook bypass history. Produces a visual audit report.
-  Trigger: info audit, information audit, model audit, audit entities,
-  check consistency, verify model, run audit
 allowed-tools: Read, Glob, Grep, Bash, Write, Edit
 user-invocable: true
 ---

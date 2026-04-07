@@ -4,8 +4,6 @@ description: >
   Start the IDDD preview server to view ERD diagrams, UI mockups, and audit
   reports in the browser. Generates HTML from current specs/ files and serves
   existing .iddd/preview/ files.
-  Trigger: preview, start preview, show ERD, view model, visual preview,
-  open preview, show diagram, render ERD
 allowed-tools: Read, Glob, Grep, Bash, Write, Edit
 user-invocable: true
 ---

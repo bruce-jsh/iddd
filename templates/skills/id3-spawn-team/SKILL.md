@@ -4,8 +4,6 @@ description: >
   Spawn an Agent Team (Phase 3-5) to parallelize spec generation, implementation,
   and QA review based on the information model. Reads entity-catalog.md and
   data-model.md to auto-generate entity-level tasks with FK dependency ordering.
-  Trigger: spawn team, agent team, phase 3, implement entities, parallel implementation,
-  start implementation, build from model
 allowed-tools: Read, Glob, Grep, Bash, Write, Edit
 user-invocable: true
 ---

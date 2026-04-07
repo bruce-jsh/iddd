@@ -29,7 +29,7 @@ Before starting any task, read these files to understand the current state of th
 | `specs/entity-catalog.md` | Entity definitions, attributes, relationships, business rule references |
 | `specs/data-model.md` | Mermaid ERD, design decisions, index strategy |
 | `specs/ui-structure.md` | Screen inventory and navigation structure (Phase 2.5) |
-| `specs/ui-design-contract.md` | Visual design contract -- tokens, components, copywriting (Phase 2.5) |
+| `specs/ui-design-contract.md` | Visual design contract: tokens, components, copywriting (Phase 2.5) |
 | `specs/ui-inventory.md` | Current UI structure (brownfield projects) |
 | `docs/business-rules.md` | All business rules (BR-xxx) with enforcement locations |
 | `steering/data-conventions.md` | Naming, typing, PK strategy, and structural conventions |
@@ -180,7 +180,7 @@ These commands are available after a global install (`npm i -g id3-cli`) and wor
 
 | Command | Description |
 |---------|-------------|
-| `/id3-start [request]` | Smart router — auto-detects IDDD status, shows a progress dashboard, and routes your request to the correct phase skill. Use this as the primary entry point for all IDDD work. |
+| `/id3-start` | Entry point — auto-detects IDDD status, shows a progress dashboard, and guides you to the next command. Run once to get started, then use individual phase commands directly. |
 | `/id3-clear` | Removes all IDDD-generated files from the project. Lists files first, warns about user-authored files, and requires explicit `y` confirmation before deleting anything. |
 
 ---
