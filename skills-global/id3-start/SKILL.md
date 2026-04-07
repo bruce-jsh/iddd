@@ -66,7 +66,7 @@ Use the Glob tool to check if the following files exist in the project root:
 4. **Run auto-setup.** Use the Bash tool to execute:
 
    ```bash
-   npx id3-cli .
+   id3-cli init .
    ```
 
    Do NOT ask the user for confirmation before running this command. Auto-setup runs automatically per design decision.
@@ -185,4 +185,4 @@ Apply these rules in order:
 
 ---
 
-Note: This skill is the global entry point installed at `~/.claude/skills/id3-start/`. The 6 phase skills (id3-identify-entities, id3-design-information, id3-design-ui, id3-spawn-team, id3-info-audit, id3-preview) are project-scoped and installed by `npx id3-cli .` into the project's `.claude/skills/` directory.
+Note: This skill is the global entry point installed at `~/.claude/skills/id3-start/`. The 6 phase skills (id3-identify-entities, id3-design-information, id3-design-ui, id3-spawn-team, id3-info-audit, id3-preview) are project-scoped and installed by `id3-cli init .` into the project's `.claude/skills/` directory.
