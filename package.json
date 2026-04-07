@@ -7,7 +7,9 @@
     "id3-cli": "dist/bin/cli.js"
   },
   "files": [
-    "dist/",
+    "dist/bin/**/*.js",
+    "dist/src/**/*.js",
+    "dist/scripts/postinstall.js",
     "templates/",
     "assets/",
     "skills-global/"
@@ -20,10 +22,21 @@
     "test:watch": "vitest",
     "version": "tsc && node dist/scripts/update-version.js && git add README.md README.ko-KR.md README.zh-CN.md README.ja-JP.md README.tr-TR.md",
     "postinstall": "node dist/scripts/postinstall.js",
-    "prepublishOnly": "npm run build"
+    "prepublishOnly": "npm run build && npm test"
   },
   "author": "Bruce Jung <sunghunet@gmail.com>",
   "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/bruce-jsh/iddd.git"
+  },
+  "homepage": "https://github.com/bruce-jsh/iddd#readme",
+  "bugs": {
+    "url": "https://github.com/bruce-jsh/iddd/issues"
+  },
+  "engines": {
+    "node": ">=20.11.0"
+  },
   "keywords": [
     "iddd",
     "claude-code",
