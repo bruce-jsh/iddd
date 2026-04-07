@@ -1,5 +1,8 @@
 <div align="center">
 
+[![npm version](https://img.shields.io/npm/v/id3-cli.svg)](https://www.npmjs.com/package/id3-cli)
+[![license](https://img.shields.io/npm/l/id3-cli.svg)](https://github.com/bruce-jsh/iddd/blob/master/LICENSE)
+
 [English](https://github.com/bruce-jsh/iddd/blob/master/README.md) · **한국어** · [简体中文](https://github.com/bruce-jsh/iddd/blob/master/README.zh-CN.md) · [日本語](https://github.com/bruce-jsh/iddd/blob/master/README.ja-JP.md) · [Türkçe](https://github.com/bruce-jsh/iddd/blob/master/README.tr-TR.md)
 
 </div>
@@ -41,6 +44,16 @@
 ║                                                                                        ║
 ╚════════════════════════════════════════════════════════════════════════════════════════╝
 ```
+
+## 빠른 시작
+
+```bash
+npm i -g id3-cli
+```
+
+프로젝트에서 `/id3-start`를 실행하세요 -- IDDD 설치 상태를 자동 감지하고, 진행 대시보드를 표시하며, 요청을 적절한 단계로 라우팅합니다.
+
+---
 
 **"어떤 정보가 존재하는가?"에서 시작하세요 -- "어떤 기능을 만들어야 하는가?"가 아닙니다.**
 
@@ -118,32 +131,17 @@ IDDD는 전통적인 3단계 데이터 모델링 프로세스를 소프트웨어
 | Claude Code    | **Claude Max** 멤버십 + Agent Teams 활성화           |
 | OpenAI Codex   | **ChatGPT Plus** 이상 (Pro/Business/Enterprise)      |
 
-`npx` 설치 프로그램을 위해 Node.js가 필요합니다. 사용하는 플랫폼에 따라 해당 AI 플랫폼 구독이 필요합니다.
+Node.js 18+와 npm이 필요합니다. AI 플랫폼 구독은 사용하는 플랫폼에 따라 필요합니다.
 
 ---
 
 ## 설치
 
-### 권장: 전역 설치
-
 ```bash
 npm i -g id3-cli
 ```
 
-전역 설치는 모든 프로젝트에서 사용 가능한 두 개의 전역 스킬(`/id3-start`와 `/id3-clear`)을 등록합니다. 이후 아무 프로젝트에서나 `/id3-start`를 실행하면 -- IDDD가 설정되어 있는지 자동 감지하고 모든 것을 처리합니다.
-
-### 대안: 프로젝트 단위 설정
-
-```bash
-npx id3-cli@latest
-```
-
-별도의 하위 명령어가 필요 없습니다 -- `id3-cli`가 초기화 프로세스를 직접 실행합니다. 다음을 수행합니다:
-
-1. 모든 IDDD 템플릿(명세, 문서, 스티어링, 스킬, Hook)을 프로젝트에 복사합니다.
-2. 플랫폼별 심볼릭 링크(`.claude/skills/` 또는 `.agents/skills/`)를 정규 `skills/` 원본을 가리키도록 생성합니다.
-3. 플랫폼의 설정 파일에 Harness Hook을 등록합니다.
-4. `.iddd/` 상태 디렉터리(커밋 카운터, 프리뷰 출력)를 초기화합니다.
+글로벌 설치 시 두 개의 글로벌 스킬(`/id3-start`, `/id3-clear`)이 등록되어 모든 프로젝트에서 사용할 수 있습니다. 프로젝트에서 `/id3-start`를 실행하면 IDDD 설치 여부를 자동 감지하고 모든 것을 처리합니다.
 
 ### 옵션
 
@@ -204,7 +202,7 @@ npx id3-cli@latest
       └── SKILL.md
 ```
 
-`npx id3-cli@latest` 실행 후 (또는 `/id3-start`를 통해 자동으로), 프로젝트에 다음 구조가 추가됩니다:
+`/id3-start` 실행 후 (또는 `id3-cli init .`), 프로젝트는 다음 구조를 갖게 됩니다:
 
 ```
 your-project/
@@ -387,7 +385,7 @@ IDDD의 스마트 진입점입니다. 사용자가 개별 Phase 스킬 이름을
 
 **기능:**
 
-1. **자동 설정:** 현재 프로젝트에 IDDD가 설치되어 있는지 감지합니다 (`specs/entity-catalog.md` + `CLAUDE.md`). 설치되지 않은 경우, 자동으로 `npx id3-cli .`를 실행하여 IDDD를 설정합니다.
+1. **자동 설정:** 현재 프로젝트에 IDDD가 설치되어 있는지 감지합니다 (`specs/entity-catalog.md` + `CLAUDE.md`). 설치되지 않은 경우, 자동으로 `id3-cli init .`를 실행하여 IDDD를 설정합니다.
 2. **진행 대시보드:** 각 Phase(Phase 0/1, Phase 2, Phase 2.5, Phase 3-5)의 완료 상태를 시각적 심볼(완료 체크마크, 진행 중 다이아몬드, 미시작 원)과 진행 바로 보여주는 Phase 파이프라인을 표시합니다.
 3. **의도 라우팅:** 사용자의 자연어 요청을 Phase 신호 키워드와 비교 분석하여 올바른 Phase 스킬(`/id3-identify-entities`, `/id3-design-information`, `/id3-design-ui`, `/id3-spawn-team`, `/id3-info-audit`, 또는 `/id3-preview`)로 라우팅합니다.
 4. **모호한 요청 처리:** 요청이 여러 Phase에 매칭될 수 있는 경우(예: "목록에 필터 추가" -- UI 변경만인지 새 데이터 Entity가 필요한지), 라우팅 전에 명확화 질문을 합니다.
@@ -805,7 +803,7 @@ $ claude
 
 ```
 $ cd existing-django-project
-$ npx id3-cli@latest
+$ id3-cli init .
 
   Detected: Django models (models.py), PostgreSQL migrations
   IDDD installed.
