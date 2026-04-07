@@ -1,5 +1,8 @@
 <div align="center">
 
+[![npm version](https://img.shields.io/npm/v/id3-cli.svg)](https://www.npmjs.com/package/id3-cli)
+[![license](https://img.shields.io/npm/l/id3-cli.svg)](https://github.com/bruce-jsh/iddd/blob/master/LICENSE)
+
 **English** · [한국어](https://github.com/bruce-jsh/iddd/blob/master/README.ko-KR.md) · [简体中文](https://github.com/bruce-jsh/iddd/blob/master/README.zh-CN.md) · [日本語](https://github.com/bruce-jsh/iddd/blob/master/README.ja-JP.md) · [Türkçe](https://github.com/bruce-jsh/iddd/blob/master/README.tr-TR.md)
 
 </div>
@@ -41,6 +44,16 @@
 ║                                                                                        ║
 ╚════════════════════════════════════════════════════════════════════════════════════════╝
 ```
+
+## Quick Start
+
+```bash
+npm i -g id3-cli
+```
+
+Then in any project, run `/id3-start` -- it auto-detects IDDD status, shows a progress dashboard, and routes your request to the correct phase.
+
+---
 
 **Start from "What information exists?" -- not "What features should we build?"**
 
@@ -118,32 +131,17 @@ Each element of the information model automatically implies development artifact
 | Claude Code    | **Claude Max** membership + Agent Teams enabled      |
 | OpenAI Codex   | **ChatGPT Plus** or higher (Pro/Business/Enterprise) |
 
-You need Node.js for the `npx` installer. The AI platform subscription is required for whichever platform you use.
+You need Node.js 18+ and npm. The AI platform subscription is required for whichever platform you use.
 
 ---
 
 ## Installation
-
-### Recommended: Global Install
 
 ```bash
 npm i -g id3-cli
 ```
 
 Global install registers two global skills (`/id3-start` and `/id3-clear`) that work across all your projects. Then in any project, just run `/id3-start` -- it auto-detects whether IDDD is set up and handles everything.
-
-### Alternative: Project-Level Setup
-
-```bash
-npx id3-cli@latest
-```
-
-No sub-command is needed -- `id3-cli` runs the init process directly. It will:
-
-1. Copy all IDDD templates (specs, docs, steering, skills, hooks) into your project.
-2. Create platform-specific symlinks (`.claude/skills/` or `.agents/skills/`) pointing to the canonical `skills/` originals.
-3. Register harness hooks in your platform's configuration file.
-4. Initialize the `.iddd/` state directory (commit counter, preview output).
 
 ### Options
 
@@ -204,7 +202,7 @@ After running `npm i -g id3-cli`, the following global skills are installed syst
       └── SKILL.md
 ```
 
-After running `npx id3-cli@latest` (or automatically via `/id3-start`), your project gains the following structure:
+After running `/id3-start` (or `id3-cli init .`), your project gains the following structure:
 
 ```
 your-project/
@@ -387,7 +385,7 @@ The smart entry point for IDDD. Users do not need to remember individual phase s
 
 **Capabilities:**
 
-1. **Auto-setup:** Detects if IDDD is installed in the current project (`specs/entity-catalog.md` + `CLAUDE.md`). If not, runs `npx id3-cli .` automatically to set up IDDD before proceeding.
+1. **Auto-setup:** Detects if IDDD is installed in the current project (`specs/entity-catalog.md` + `CLAUDE.md`). If not, runs `id3-cli init .` automatically to set up IDDD before proceeding.
 2. **Progress dashboard:** Shows the phase pipeline with completion status for each phase (Phase 0/1, Phase 2, Phase 2.5, Phase 3-5) using visual symbols (checkmark for complete, diamond for in-progress, circle for not started) and a progress bar.
 3. **Intent routing:** Analyzes the user's natural language request against phase signal keywords and routes to the correct phase skill (`/id3-identify-entities`, `/id3-design-information`, `/id3-design-ui`, `/id3-spawn-team`, `/id3-info-audit`, or `/id3-preview`).
 4. **Ambiguous request handling:** When a request could match multiple phases (e.g., "add filter to the list" could be UI-only or require new data entities), asks a clarification question before routing.
@@ -805,7 +803,7 @@ $ claude
 
 ```
 $ cd existing-django-project
-$ npx id3-cli@latest
+$ id3-cli init .
 
   Detected: Django models (models.py), PostgreSQL migrations
   IDDD installed.
