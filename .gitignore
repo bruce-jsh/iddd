@@ -1,12 +1,32 @@
+# Dependencies
 node_modules/
+
+# Build output
 dist/
 *.tgz
+
+# OS files
 .DS_Store
+Thumbs.db
+
+# Lock files
 package-lock.json
-# Development artifacts
+
+# Development artifacts - not for end users
 docs/superpowers/
 prd/
 tests/
 scripts/
 vitest.config.ts
 tsconfig.json
+
+# AI agent / planning artifacts
+.planning/
+CLAUDE.md
+
+# Editor artifacts
+*.swp
+*.swo
+*~
+.vscode/
+.idea/
