@@ -2,7 +2,7 @@
 gsd_state_version: 1.0
 milestone: v1.1
 milestone_name: Release & Deploy
-status: defining_requirements
+status: roadmap_complete
 stopped_at: null
 last_updated: "2026-04-07"
 progress:
