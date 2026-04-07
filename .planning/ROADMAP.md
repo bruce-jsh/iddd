@@ -23,13 +23,8 @@ Transform id3-cli from an npx-only template copier into a globally installable p
 
 Decimal phases appear between their surrounding integers in numeric order.
 
-### v1.0 Phases (Complete)
-
 - [x] **Phase 1: Global Install & Skill Registration** - CLI installs globally via npm, registers skills
 - [x] **Phase 2: Skills & UX** - /id3-start smart router, /id3-clear project reset
-
-### v1.1 Phases
-
 - [ ] **Phase 3: Repository & Package Cleanup** - LICENSE, .gitignore, git tracking cleanup, package.json metadata, files field refinement, SKILL.md npx fix
 - [ ] **Phase 4: Documentation** - README restructure (Quick Start first), npx→global install references, CHANGELOG.md, translated README updates
 - [ ] **Phase 5: Release & Verify** - Version bump to 1.0.0, pack verification, tarball test, npm publish, GitHub Release, post-publish verification
@@ -46,7 +41,10 @@ Decimal phases appear between their surrounding integers in numeric order.
   3. `npm pack --dry-run`에서 dev scripts, 중복 hooks, .d.ts 파일이 나타나지 않는다
   4. package.json에 repository, homepage, bugs, engines 필드가 존재한다
   5. `id3-start/SKILL.md`에서 npx 참조가 제거되었다
-**Plans:** TBD
+**Plans:** 2 plans
+Plans:
+- [ ] 03-01-PLAN.md -- Repository cleanup: LICENSE, .gitignore, git tracking removal
+- [ ] 03-02-PLAN.md -- Package quality: metadata, files field, prepublishOnly, SKILL.md npx fix
 
 ### Phase 4: Documentation
 **Goal**: 사용자가 README를 보고 10초 안에 설치/시작 방법을 파악할 수 있게 한다
@@ -82,6 +80,6 @@ Phases execute in numeric order: 1 -> 2 -> 3 -> 4 -> 5
 |-------|----------------|--------|-----------|
 | 1. Global Install & Skill Registration | 2/2 | Complete | 2026-04-06 |
 | 2. Skills & UX | 2/2 | Complete | 2026-04-06 |
-| 3. Repository & Package Cleanup | 0/? | Not started | - |
+| 3. Repository & Package Cleanup | 0/2 | Not started | - |
 | 4. Documentation | 0/? | Not started | - |
 | 5. Release & Verify | 0/? | Not started | - |
