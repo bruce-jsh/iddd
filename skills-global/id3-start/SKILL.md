@@ -109,13 +109,15 @@ Read YAML frontmatter from the specs files to determine the current project phas
 
 ## Step 3: Show Dashboard
 
-Render the progress dashboard following the template in [references/dashboard-template.md](references/dashboard-template.md) EXACTLY. Fill in the status symbols and values from the project state detected in Step 2. Do not reformat or improve the layout.
+Run the dashboard command using the Bash tool. Display the output exactly as-is without modification:
 
-The dashboard consists of 4 sections rendered in order:
-1. Header (double-line box with IDDD title)
-2. Phase Pipeline (4 boxes with status symbols)
-3. Progress Bar (filled + empty blocks with percentage)
-4. Status Message (current status + request or suggestion)
+```bash
+id3-cli dashboard $ARGUMENTS
+```
+
+The command reads specs files, determines phase status, and renders a formatted dashboard with header, phase pipeline, progress bar, and status message.
+
+If the `id3-cli dashboard` command fails (e.g., older version without the command), fall back to rendering the dashboard manually following the template in [references/dashboard-template.md](references/dashboard-template.md) EXACTLY.
 
 ---
 

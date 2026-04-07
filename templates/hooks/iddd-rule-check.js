@@ -14,7 +14,7 @@ import { execSync } from "node:child_process";
 
 // src/utils/ascii.ts
 function box(content, options = {}) {
-  const { title, width = 47, padding = 1 } = options;
+  const { title, width = 50, padding = 1 } = options;
   const lines = content.split("\n");
   const innerWidth = width - 2;
   const padStr = " ".repeat(padding);

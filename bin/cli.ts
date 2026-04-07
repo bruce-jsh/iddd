@@ -30,6 +30,13 @@ switch (command) {
     break;
   }
 
+  case 'dashboard': {
+    const { renderDashboard } = await import('../src/dashboard.js');
+    const request = args.slice(1).join(' ');
+    console.log(renderDashboard('.', request || undefined));
+    break;
+  }
+
   case '--help':
   case '-h': {
     printHelp();
@@ -84,6 +91,7 @@ function printHelp(): void {
 
 Commands:
   init [dir]           Initialize IDDD in a project (default command)
+  dashboard [request]  Show project progress dashboard
   install-skills       Register /id3-start and /id3-clear in your AI coding agent
   uninstall-skills     Remove registered skills (run before npm uninstall -g id3-cli)
 

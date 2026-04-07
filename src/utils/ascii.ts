@@ -8,7 +8,7 @@ export interface BoxOptions {
 }
 
 export function box(content: string, options: BoxOptions = {}): string {
-  const { title, width = 47, padding = 1 } = options;
+  const { title, width = 50, padding = 1 } = options;
   const lines = content.split('\n');
   const innerWidth = width - 2; // borders
 
